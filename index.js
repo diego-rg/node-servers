@@ -1,7 +1,8 @@
 import http from "http";
 
 const server = http.createServer((req, res) =>{
-    res.write("<h1>Toma un encabezado!</h1>");
+    res.writeHead(200, { "Content-Type": "application/json" });//Configuramos con headers que a resposta sea en json.
+    res.write("<h1>Toma un encabezado en json!</h1>");
     res.end();
 });
 
