@@ -1,9 +1,16 @@
 import http from "http";
+import fs from "fs";//Necesario para ler o html
 
 const server = http.createServer((req, res) =>{
-    res.writeHead(200, { "Content-Type": "application/json" });//Configuramos con headers que a resposta sea en json.
-    res.write("<h1>Toma un encabezado en json!</h1>");
-    res.end();
+    res.writeHead(200, { "Content-Type": "text/html; charset=UTF-8" });
+    const file = "./index.html";
+    fs.readFile(file, (err, content) => {
+        if (err) {
+            return console.log("Ha habido un error!", err);
+        }
+        res.write(content);
+        res.end();
+    });
 });
 
 server.listen(3000, "localhost", err => {
